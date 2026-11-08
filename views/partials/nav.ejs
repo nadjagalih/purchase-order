@@ -1,0 +1,14 @@
+<header class="topbar">
+  <a class="brand" href="/">Procure<span>Panel</span></a>
+  <nav>
+    <a href="/">Dashboard</a>
+    <a href="/suppliers">Supplier</a>
+    <a href="/purchase-orders">Purchase Order</a>
+  </nav>
+  <div class="user-area">
+    <span><%= typeof userName !== 'undefined' ? userName : 'Administrator' %></span>
+    <form action="/logout" method="POST">
+      <button class="btn btn-outline btn-small" type="submit">Logout</button>
+    </form>
+  </div>
+</header>

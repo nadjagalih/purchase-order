@@ -1,0 +1,31 @@
+<%- include('../partials/header', { title }) %><%- include('../partials/nav') %>
+    <main class="container narrow">
+        <div class="page-heading">
+            <div>
+                <p class="eyebrow">MASTER DATA</p>
+                <h1>Edit Supplier</h1>
+            </div>
+        </div>
+        <section class="panel">
+            <form action="/suppliers/<%= supplier.id %>/update" method="POST" class="form-stack">
+                <label>Nama Supplier *</label>
+                <input name="name" maxlength="150" required
+                    value="<%= supplier.name %>">
+                <label>Email *</label>
+                <input type="email" name="email"
+                    maxlength="150" required value="<%= supplier.email %>">
+                <label>Telepon *</label>
+                <input
+                    name="phone" maxlength="30" required value="<%= supplier.phone %>">
+                <label>Alamat *</label>
+                <textarea name="address" rows="4" required>
+                    <%= supplier.address %>
+                </textarea>
+                <div class="actions">
+                    <button class="btn btn-primary" type="submit">Simpan Perubahan</button>
+                    <a class="btn btn-outline" href="/suppliers">Batal</a>
+                </div>
+            </form>
+        </section>
+    </main>
+<%- include('../partials/footer') %>

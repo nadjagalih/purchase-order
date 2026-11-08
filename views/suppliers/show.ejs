@@ -1,0 +1,44 @@
+<%- include('../partials/header', { title }) %><%- include('../partials/nav') %>
+    <main class="container narrow">
+        <div class="page-heading">
+            <div>
+                <p class="eyebrow">DETAIL DATA</p>
+                <h1>
+                    <%= supplier.name %>
+                </h1>
+                <p class="muted">Supplier #<%= supplier.id %>
+                </p>
+            </div>
+            <div class="actions">
+                <a class="btn btn-outline" href="/suppliers">← Kembali</a>
+            </div>
+        </div>
+        <section class="panel detail-grid">
+            <div><span class="muted">Email</span>
+                <p>
+                    <%= supplier.email %>
+                </p>
+            </div>
+            <div><span class="muted">Telepon</span>
+                <p>
+                    <%= supplier.phone %>
+                </p>
+            </div>
+            <div><span class="muted">Alamat</span>
+                <p>
+                    <%= supplier.address %>
+                </p>
+            </div>
+            <div><span class="muted">Jumlah PO</span>
+                <p><strong>
+                        <%= supplier.purchaseOrders ? supplier.purchaseOrders.length : 0 %>
+                </strong></p>
+            </div>
+        </section>
+
+        <div class="actions">
+            <a class="btn btn-primary" href="/suppliers/<%= supplier.id %>/edit">Edit Supplier</a>
+        </div>
+
+    </main>
+<%- include('../partials/footer') %>

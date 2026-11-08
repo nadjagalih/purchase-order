@@ -1,0 +1,24 @@
+<%- include('../partials/header', { title }) %>
+<main class="login-wrap">
+  <section class="login-card">
+
+    <div class="brand login-brand">
+      Procure<span>Panel</span>
+    </div>
+
+    <p class="muted">Masuk untuk mengelola supplier dan purchase order.</p>
+
+    <% if (error) { %><div class="alert"><%= error %></div><% } %>
+
+    <form action="/login" method="POST" class="form-stack">
+      <label>Email</label>
+      <input type="email" name="email" placeholder="admin@example.com" required>
+      <label>Password</label>
+      <input type="password" name="password" placeholder="Masukkan password" required>
+      <button class="btn btn-primary btn-block" type="submit">Login</button>
+    </form>
+    
+  </section>
+  
+</main>
+<%- include('../partials/footer') %>

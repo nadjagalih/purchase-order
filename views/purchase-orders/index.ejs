@@ -1,0 +1,83 @@
+<%- include('../partials/header', { title }) %><%- include('../partials/nav') %>
+    <main class="container">
+        <div class="page-heading">
+            <div>
+                <p class="eyebrow">PROCUREMENT</p>
+
+                <h1>Purchase Order</h1>
+
+                <p class="muted">Kelola pesanan pembelian supplier.</p>
+            </div>
+            <a class="btn btn-primary" href="/purchase-orders/new">+ Tambah PO</a>
+
+        </div>
+        <form class="search-form" method="GET" action="/purchase-orders">
+            <input name="search" value="<%= search %>"
+                placeholder="Cari nomor PO atau supplier..."><select name="status">
+                <option value="">Semua status</option>
+                <% statuses.forEach(item=> { %>
+                    <option value="<%= item %>" 
+                        <%=status===item ? 'selected' : '' %>><%= item %>
+                    </option>
+                <% }) %>
+
+            </select>
+
+            <button class="btn btn-secondary" type="submit">Terapkan</button>
+
+            <% if (search || status) { %>
+                <a class="btn btn-outline" href="/purchase-orders">Reset</a>
+            <% } %>
+        </form>
+
+        <section class="panel table-wrap">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Nomor PO</th>
+                        <th>Supplier</th>
+                        <th>Tanggal</th>
+                        <th>Total</th>
+                        <th>Status</th>
+                        <th>Aksi</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% if (!purchaseOrders.length) { %>
+                        <tr>
+                            <td colspan="6" class="empty">Belum ada purchase order.</td>
+                        </tr>
+                    <% } %>
+
+                        <% purchaseOrders.forEach(po=> { %><tr>
+                                <td><strong>
+                                        <%= po.orderNumber %>
+                                    </strong></td>
+                                <td>
+                                    <%= po.supplier.name %>
+                                </td>
+                                <td>
+                                    <%= new Date(po.orderDate).toLocaleDateString('id-ID') %>
+                                </td>
+                                <td>Rp <%= Number(po.totalAmount).toLocaleString('id-ID') %>
+                                </td>
+                                <td>
+                                    <span class="status status-<%= po.status %>">
+                                        <%= po.status %>
+                                    </span>
+                                </td>
+                                <td class="table-actions">
+                                    <a href="/purchase-orders/<%= po.id %>">Detail</a>
+                                    <a href="/purchase-orders/<%= po.id %>/edit">Edit</a>
+                                    <form action="/purchase-orders/<%= po.id %>/delete" method="POST"
+                                        onsubmit="return confirm('Hapus purchase order ini?')">
+                                        <button class="link-danger" type="submit">Hapus</button>
+                                    </form>
+                                </td>
+                            </tr>
+                        <% }) %>
+                </tbody>
+            </table>
+        </section>
+    </main>
+<%- include('../partials/footer') %>

@@ -1,0 +1,60 @@
+<%- include('../partials/header', { title }) %><%- include('../partials/nav') %>
+    <main class="container narrow">
+        <div class="page-heading">
+            <div>
+                <p class="eyebrow">PROCUREMENT</p>
+                <h1>Tambah Purchase Order</h1>
+            </div>
+        </div>
+        
+        <section class="panel">
+            <% if (!suppliers.length) { %>
+                <div class="alert">Buat supplier terlebih dahulu sebelum menambahkan PO.</div>
+
+                <a class="btn btn-primary" href="/suppliers/new">Tambah Supplier</a>
+
+                <% } else { %>
+                    <form action="/purchase-orders" method="POST" class="form-stack">
+                        
+                        <label>Nomor PO *</label>
+                        <input name="orderNumber" maxlength="50" required placeholder="Contoh: PO-2026-001">
+
+                        <div class="form-row">
+                            <div><label>Tanggal pesanan *</label>
+                                <input type="date" name="orderDate" required>
+                            </div>
+                            <div>
+                                <label>Total amount (Rp) *</label>
+                                <input type="number" name="totalAmount" min="0"
+                                    step="0.01" required>
+                                </div>
+                        </div>
+                        
+                        <label>Supplier *</label>
+                        <select name="supplierId" required>
+                            <option value="">Pilih supplier</option>
+                            <% suppliers.forEach(supplier=> { %><option value="<%= supplier.id %>">
+                                    <%= supplier.name %>
+                            </option>
+                            <% }) %>
+                        </select>
+
+                        <label>Status *</label>
+                        <select name="status" required>
+                            <% statuses.forEach(item=> { %>
+                                <option value="<%= item %>">
+                                    <%= item %>
+                                </option>
+                            <% }) %>
+                        </select>
+
+                        <div class="actions">
+                            <button class="btn btn-primary" type="submit">Simpan</button>
+                            <a class="btn btn-outline" href="/purchase-orders">Batal</a>
+                        </div>
+
+                    </form>
+                <% } %>
+        </section>
+    </main>
+<%- include('../partials/footer') %>

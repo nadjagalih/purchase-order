@@ -1,0 +1,11 @@
+<%- include('../partials/header', { title }) %>
+<main class="login-wrap">
+  <section class="login-card">
+    <p class="eyebrow">ERROR <%= status %></p>
+    <h1><%= title %></h1>
+    <p><%= message %></p>
+    <a class="btn btn-primary btn-block" href="/">Kembali ke Dashboard</a>
+    <p class="hint">Path: <%= currentPath %></p>
+  </section>
+</main>
+<%- include('../partials/footer') %>

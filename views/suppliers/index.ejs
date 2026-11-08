@@ -1,0 +1,82 @@
+<%- include('../partials/header', { title }) %>
+  <%- include('../partials/nav') %>
+    <main class="container">
+
+      <div class="page-heading">
+        <div>
+          <p class="eyebrow">MASTER DATA</p>
+          <h1>Supplier</h1>
+          <p class="muted">Kelola data supplier untuk kebutuhan procurement.</p>
+        </div><a class="btn btn-primary" href="/suppliers/new">+ Tambah Supplier</a>
+      </div>
+
+      <form class="search-form" method="GET" action="/suppliers">
+
+        <input name="search" value="<%= search %>" placeholder="Cari nama supplier...">
+          <button class="btn btn-secondary" type="submit">Cari</button>
+
+        <% if (search) { %>
+          <a class="btn btn-outline" href="/suppliers">Reset</a>
+        <% } %>
+
+      </form>
+      <section class="panel table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Nama</th>
+              <th>Email</th>
+              <th>Telepon</th>
+              <th>Jumlah PO</th>
+              <th>Aksi</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% if (!suppliers.length) { %>
+
+              <tr>
+                <td colspan="6" class="empty">Belum ada supplier.</td>
+              </tr>
+
+            <% } %>
+
+              <% suppliers.forEach(supplier=> { %>
+                <tr>
+                  <td>
+                    <%= supplier.id %>
+                  </td>
+
+                  <td>
+                    <strong>
+                      <%= supplier.name %>
+                    </strong>
+                  </td>
+
+                  <td>
+                    <%= supplier.email %>
+                  </td>
+
+                  <td>
+                    <%= supplier.phone %>
+                  </td>
+
+                  <td>
+                    <%= supplier.purchaseOrders ? supplier.purchaseOrders.length : 0 %>
+                  </td>
+
+                  <td class="table-actions">
+                    <a href="/suppliers/<%= supplier.id %>">Detail</a>
+                    <a href="/suppliers/<%= supplier.id %>/edit">Edit</a>
+                    <form action="/suppliers/<%= supplier.id %>/delete" method="POST"
+                      onsubmit="return confirm('Hapus supplier ini?')"><button class="link-danger"
+                        type="submit">Hapus</button></form>
+                  </td>
+
+                </tr>
+              <% }) %>
+          </tbody>
+        </table>
+      </section>
+    </main>
+<%- include('../partials/footer') %>

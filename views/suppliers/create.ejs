@@ -1,0 +1,26 @@
+<%- include('../partials/header', { title }) %><%- include('../partials/nav') %>
+    <main class="container narrow">
+        <div class="page-heading">
+            <div>
+                <p class="eyebrow">MASTER DATA</p>
+                <h1>Tambah Supplier</h1>
+            </div>
+        </div>
+        <section class="panel">
+            <form action="/suppliers" method="POST" class="form-stack">
+                <label>Nama Supplier *</label>
+                <input name="name" maxlength="150" required placeholder="Contoh: PT Maju Jaya">
+                <label>Email *</label>
+                <input type="email" name="email" maxlength="150" required>
+                <label>Telepon *</label>
+                <input name="phone" maxlength="30" required>
+                <label>Alamat *</label>
+                <textarea name="address" rows="4" required>
+                </textarea>
+                <div class="actions"><button class="btn btn-primary" type="submit">Simpan</button>
+                    <a class="btn btn-outline" href="/suppliers">Batal</a>
+                </div>
+            </form>
+        </section>
+    </main>
+<%- include('../partials/footer') %>

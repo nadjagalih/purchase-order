@@ -1,0 +1,41 @@
+<%- include('../partials/header', { title }) %>
+  <%- include('../partials/nav', { userName: sessionUserName }) %>
+    <main class="container">
+      <div class="page-heading">
+
+        <div>
+          <p class="eyebrow">OVERVIEW</p>
+          <h1>Dashboard</h1>
+          <p class="muted">Ringkasan data aplikasi.</p>
+        </div>
+
+      </div>
+
+      <section class="stats-grid">
+
+        <article class="stat-card">
+          <span>Total Supplier</span>
+          <strong>
+            <%= supplierCount %>
+          </strong>
+          <a href="/suppliers">Lihat supplier →</a>
+        </article>
+
+        <article class="stat-card">
+          <span>Total Purchase Order</span>
+          <strong>
+            <%= purchaseOrderCount %>
+          </strong>
+          <a href="/purchase-orders">Lihat purchase order →</a>
+        </article>
+
+      </section>
+      
+      <section class="panel">
+        <h2>Mulai mengelola data</h2>
+        <p class="muted">Setiap purchase order terhubung dengan tepat satu supplier.</p>
+        <div class="actions"><a class="btn btn-primary" href="/suppliers/new">Tambah Supplier</a><a
+            class="btn btn-secondary" href="/purchase-orders/new">Tambah Purchase Order</a></div>
+      </section>
+    </main>
+<%- include('../partials/footer') %>
